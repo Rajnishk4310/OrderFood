@@ -1,0 +1,281 @@
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Global link styling to remove underline */
+a {
+    text-decoration: none;
+    /* Removes underline */
+    color: inherit;
+    /* Keeps the color consistent with the surrounding text */
+}
+
+/* Optionally, you can add hover effects for links */
+a:hover {
+    color: #ad1017;
+    /* Change color on hover if desired */
+    text-decoration: none;
+    /* Ensures underline is still removed on hover */
+}
+
+
+/* Navbar container styling */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo section styling */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo>img {
+    width: 55px;
+    margin-right: 15px;
+}
+
+.logo>h1 {
+    color: #ad1017;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Navigation items styling */
+.nav-items {
+    display: flex;
+    align-items: center;
+}
+
+.nav-items>ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-items>ul>li {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    background: transparent;
+    border: 2px solid transparent;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-items>ul>li:hover {
+    color: #ad1017;
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+}
+
+.nav-items>ul>button:focus {
+    border-color: #ad1017;
+}
+
+/* Active or selected state for navigation items */
+.nav-items>ul>button.active {
+    color: #ad1017;
+    font-weight: bold;
+}
+
+/* Responsive navbar adjustments */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 15px;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .nav-items>ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* TopFilter container styling */
+.TopFilter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.TopFilter button {
+    background-color: #ad1017;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.TopFilter button:hover {
+    background-color: #931015;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .TopFilter button {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+/* Card items container styling */
+.card-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card styling */
+.card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+    width: 270px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Card image styling */
+.card>img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Card content styling */
+.card-contents {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card-contents>h3 {
+    font-size: 1.3rem;
+    color: #333;
+}
+
+.card-contents>p {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* Specific text color for ratings and cost */
+.card-contents>p:nth-child(3),
+.card-contents>p:nth-child(4) {
+    color: #ad1017;
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+}
+
+/* Restaurant menu container */
+.restaurant-menu-container {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.restaurant-info {
+    margin-bottom: 20px;
+}
+
+.restaurant-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.restaurant-details,
+.restaurant-cuisines,
+.restaurant-area,
+.restaurant-sla {
+    margin: 5px 0;
+    color: #555;
+}
+
+.restaurant-menu {
+    margin-top: 30px;
+}
+
+.menu-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.menu-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-item {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+    background-color: #f0f0f0;
+}
+
+.about{
+    display: flex;
+    gap: 10px;
+}
+.user {
+    border: solid rgb(207, 207, 207);
+    padding: 10px;
+    max-width: fit-content;
+    border-radius: 14px;
+}

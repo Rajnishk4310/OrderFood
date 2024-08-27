@@ -1,0 +1,50 @@
+/* Shimmer effect for the image placeholder */
+.shimmer-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    background-color: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid #ddd;
+}
+
+
+
+/* Shimmer effect for text lines */
+.shimmer-line {
+    height: 12px;
+    background-color: #e0e0e0;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer-line:last-child {
+    width: 80%;
+    margin-bottom: 0;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* Applying the shimmer animation to the placeholders */
+.shimmer-img,
+.shimmer-line {
+    background: linear-gradient(to right,
+            #e0e0e0 0%,
+            #f0f0f0 20%,
+            #e0e0e0 40%,
+            #e0e0e0 100%);
+    background-size: 200% 100%;
+    animation: shimmer 11s infinite;
+}
