@@ -1,10 +1,13 @@
 import { useParams } from "react-router-dom";
 import ShimmerUi from "./shimmer/SimmerUi";
 import useRestrauntMenu from "../utils/useRestrauntMenu";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestrauntMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestrauntMenu(resId);
+  const [showIndex, SetShowIndex] = useState(0);
 
   if (!resInfo) return <ShimmerUi />;
 
@@ -18,33 +21,42 @@ const RestrauntMenu = () => {
     sla,
   } = resInfo?.data?.cards[2]?.card?.card?.info || {};
 
-  const itemCards =
-    resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
-      ?.card?.itemCards ||
-    resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-      ?.card?.itemCards ||
-    [];
+  const categories =
+    resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
 
   return (
-    <div className="restaurant-menu-container">
-      <div className="restaurant-info">
-        <h1 className="restaurant-name">{name}</h1>
-        <h3 className="restaurant-details">
-          ⭐{avgRating} ({totalRatingsString}) ● {costForTwoMessage}
-        </h3>
-        <h3 className="restaurant-cuisines">{cuisines?.join(", ")}</h3>
-        <h4 className="restaurant-area">Outlet - {areaName}</h4>
-        <h4 className="restaurant-sla">{sla?.deliveryTime} minutes</h4>
+    <div className="m-5 font-sans text-center">
+      <div className="mb-5 border w-2/5 mx-auto  rounded-3xl border-t-0 shadow text-left p-4">
+        <h1 className="text-2xl font-bold mb-2">{name}</h1>
+        <div className="border rounded-3xl shadow-2xl p-4 mt-4">
+          <h3 className=" text-gray-600 text-lg mb-1 font-bold">
+            ⭐ {avgRating} ({totalRatingsString}) ● {costForTwoMessage}
+          </h3>
+          <h3 className="restaurant-cuisines text-gray-700 text-lg mb-1">
+            {cuisines?.join(", ")}
+          </h3>
+          <h4 className="restaurant-area text-gray-500 text-md mb-1">
+            Outlet - {areaName}
+          </h4>
+          <h4 className="restaurant-sla text-gray-500 text-md">
+            {sla?.deliveryTime} minutes
+          </h4>
+        </div>
       </div>
-      <div className="restaurant-menu">
-        <h1 className="menu-title">Menu</h1>
-        <ul className="menu-items">
-          {itemCards.map((item) => (
-            <li key={item.card.info.id} className="menu-item">
-              {item.card.info.name}
-            </li>
-          ))}
-        </ul>
+      <div className=" text-center">
+        <h1 className="text-2xl font-bold mb-8 text-gray-400">⁜Menu⁜</h1>
+        {categories.map((category, index) => (
+          <RestaurantCategory
+            key={category.card.card.title}
+            data={category.card.card}
+            showItems={index === showIndex ? true : false}
+            SetShowIndex={() => SetShowIndex(index != showIndex ? index : null)}
+          />
+        ))}
       </div>
     </div>
   );

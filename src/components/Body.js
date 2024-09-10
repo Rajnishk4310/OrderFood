@@ -45,32 +45,43 @@ const Body = () => {
   }
 
   return (
-    <div>
-      <div>
+    <div className="p-6">
+      {/* Search Bar */}
+      <div className="flex justify-center mb-6">
         <input
           type="text"
           value={searchText}
           aria-label="Search Restaurants"
           placeholder="Search for restaurants..."
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        ></input>
+          onChange={(e) => setSearchText(e.target.value)}
+          className="px-4 py-2 w-1/2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ad1017] focus:border-transparent"
+        />
         <button
           aria-label="Search Restaurants"
           onClick={filterSearchRestaurants}
+          className="ml-3 px-6 py-2 bg-[#ad1017] text-white font-semibold rounded-md shadow-sm hover:bg-[#8c0f13] transition-colors duration-200"
         >
           Search
         </button>
       </div>
-      <div className="TopFilter">
-        <button onClick={filterTopRestaurants}>Top Rated Restaurants</button>
+
+      {/* Top Filter */}
+      <div className="flex justify-center mb-8">
+        <button
+          onClick={filterTopRestaurants}
+          className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 transition-colors duration-200"
+        >
+          Top Rated Restaurants
+        </button>
       </div>
-      <div className="card-items">
+
+      {/* Restaurant Cards */}
+      <div className="flex flex-wrap gap-6 justify-center">
         {filterRestaurantList.map((restaurant) => (
           <Link
             to={"/restraunts/" + restaurant.info.id}
             key={restaurant.info.id}
+            className="block"
           >
             <RestaurantCard resName={restaurant} />
           </Link>

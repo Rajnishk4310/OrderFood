@@ -8,34 +8,69 @@ const Header = () => {
   const onlineStatus = useOnelineStatus();
 
   return (
-    <div className="nav">
-      <div className="logo">
-        <img alt="Logo" src={LOGO_URL} />
-        <h1>Order Food</h1>
+    <div className="flex justify-between items-center p-4 bg-slate-200 shadow-xl">
+      {/* Logo and Title Section */}
+      <div className="flex items-center">
+        <img
+          className="w-16 h-16 mx-3"
+          alt="Logo"
+          src={LOGO_URL}
+        />
+        <h1 className="text-2xl font-bold text-[#ad1017]">Order Food</h1>
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>Online Status: {onlineStatus===true?"✅":"🔴"}</li>
-          <li>
-            <Link to="/">Home</Link>
+
+      {/* Navigation Menu */}
+      <div>
+        <ul className="flex items-center gap-6 text-gray-700">
+          <li className="text-xl font-semibold">
+            Online Status: {onlineStatus === true ? "✅" : "🔴"}
           </li>
           <li>
-            <Link to="/about">About Us</Link>
+            <Link
+              to="/"
+              className="hover:text-[#ad1017] font-bold transition-colors duration-200"
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/contact">Contact Us</Link>
+            <Link
+              to="/about"
+              className="hover:text-[#ad1017] font-bold transition-colors duration-200"
+            >
+              About Us
+            </Link>
           </li>
-          <li>Offer</li>
-          <li>Discount</li>
-          <li>Policy</li>
-          <li>Help</li>
-          <li>Cart</li>
+          <li>
+            <Link
+              to="/contact"
+              className="hover:text-[#ad1017] font-bold transition-colors duration-200"
+            >
+              Contact Us
+            </Link>
+          </li>
+          <li className="hover:text-[#ad1017] font-bold transition-colors duration-200">
+            Offer
+          </li>
+          <li className="hover:text-[#ad1017] font-bold transition-colors duration-200">
+            Discount
+          </li>
+          <li className="hover:text-[#ad1017] font-bold transition-colors duration-200">
+            Policy
+          </li>
+          <li className="hover:text-[#ad1017] font-bold transition-colors duration-200">
+            Help
+          </li>
+          <li className="hover:text-[#ad1017] font-bold transition-colors duration-200">
+            Cart
+          </li>
           <li
             onClick={() => {
               btnLogin === "Login"
                 ? setBtnLogin("Logout")
                 : setBtnLogin("Login");
             }}
+            className="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-[#ad1017] transition-colors duration-200"
           >
             {btnLogin}
           </li>

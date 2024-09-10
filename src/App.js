@@ -12,7 +12,7 @@ import useOnlineStatus from "./utils/useOnlineStatus";
 const App = () => {
   const onlineStatus = useOnlineStatus();
 
-  if (onlineStatus === false)
+  if (!onlineStatus)
     return (
       <h1>
         Looks like you're offline!! Please check your internet connection!
