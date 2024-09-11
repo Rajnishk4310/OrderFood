@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerUi from "./shimmer/SimmerUi";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [filterRestaurantList, setfilterRestaurantList] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   useEffect(() => {
     fetchData();
@@ -48,6 +50,15 @@ const Body = () => {
     <div className="p-6">
       {/* Search Bar */}
       <div className="flex justify-center mb-6">
+        <label className=" flex items-center">User Name : </label>
+        <input
+          type="text"
+          value={loggedInUser}
+          aria-label="Enter User Name"
+          placeholder="Enter User Name"
+          onChange={(e) => setUserName(e.target.value)}
+          className="px-4 py-2 w-1/6 mx-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#ad1017] focus:border-transparent"
+        />
         <input
           type="text"
           value={searchText}

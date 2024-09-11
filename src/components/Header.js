@@ -1,21 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnelineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [btnLogin, setBtnLogin] = useState("Login");
   const onlineStatus = useOnelineStatus();
+  const { loggedInUser } = useContext(UserContext);
 
   return (
     <div className="flex justify-between items-center p-4 bg-slate-200 shadow-xl">
       {/* Logo and Title Section */}
       <div className="flex items-center">
-        <img
-          className="w-16 h-16 mx-3"
-          alt="Logo"
-          src={LOGO_URL}
-        />
+        <img className="w-16 h-16 mx-3" alt="Logo" src={LOGO_URL} />
         <h1 className="text-2xl font-bold text-[#ad1017]">Order Food</h1>
       </div>
 
@@ -74,6 +72,7 @@ const Header = () => {
           >
             {btnLogin}
           </li>
+          <li className="font-bold">Welcome {loggedInUser}</li>
         </ul>
       </div>
     </div>

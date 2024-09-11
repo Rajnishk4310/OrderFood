@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,8 +8,10 @@ import Error from "./components/error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestrauntMenu from "./components/RestaurantMenu";
 import useOnlineStatus from "./utils/useOnlineStatus";
+import UserContext from "./utils/UserContext";
 
 const App = () => {
+  const [userName, setUserName] = useState();
   const onlineStatus = useOnlineStatus();
 
   if (!onlineStatus)
@@ -19,12 +21,23 @@ const App = () => {
       </h1>
     );
 
+  //Authentication
+  useEffect(() => {
+    //api call
+    const data = {
+      name: "Rahul Kumar",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-      {/* <Footer /> */}
-    </div>
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+      <div className="app">
+        <Header />
+        <Outlet />
+        {/* <Footer /> */}
+      </div>
+    </UserContext.Provider>
   );
 };
 

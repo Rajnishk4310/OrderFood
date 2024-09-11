@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import { RESTO_LOGO } from "../utils/constants";
+import UserContext from "../utils/UserContext";
 
 const RestaurantCard = (props) => {
   const { resName } = props;
   const { name, cuisines, avgRating, costForTwo, sla, cloudinaryImageId } =
     resName?.info;
+  const { loggedInUser } = useContext(UserContext);
 
   return (
     <div className=" bg-white rounded-[15px] overflow-hidden cursor-pointer transition-transform duration-400 ease-in-out hover:transform hover:scale-[1.05] shadow-lg hover:shadow-2xl w-[270px]">
@@ -26,6 +29,7 @@ const RestaurantCard = (props) => {
           {cuisines.slice(0, 3).join(", ")}
         </p>
         <p className="text-sm text-gray-600">{sla.slaString}</p>
+        <p className="text-sm text-gray-600">{loggedInUser}</p>
       </div>
     </div>
   );
